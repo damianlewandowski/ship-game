@@ -15,9 +15,6 @@ public class Ship {
     this.x = x;
     this.y = y;
 
-    Config config = new Config();
-    this.maxBoardRows = Integer.parseInt(config.getProperty("boardRows"));
-    this.maxBoardCols = Integer.parseInt(config.getProperty("boardCols"));
   }
 
   public int getX() {
@@ -40,6 +37,10 @@ public class Ship {
       throw new Error("Ship's \"y\" field cannot be bigger than boardSize");
     }
     this.y = y;
+  }
+
+  public boolean isHit(int x, int y) {
+    return this.x == x && this.y == y;
   }
 
   public boolean isDestroyed() {

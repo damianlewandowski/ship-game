@@ -1,5 +1,6 @@
 package com.lewandowski;
 
+import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -9,16 +10,29 @@ public class Board {
   private boolean[][] fields;
   private int shipsPerPlayer;
 
-  public Board() {
-    Config config = new Config();
-    int maxBoardRows = Integer.parseInt(config.getProperty("boardRows"));
-    int maxBoardCols = Integer.parseInt(config.getProperty("boardCols"));
-    this.shipsPerPlayer = Integer.parseInt(config.getProperty("shipsPerPlayer"));
-
-    this.fields = new boolean[maxBoardRows][maxBoardCols];
+  public Board(int maxCols, int maxRows, int shipsPerPlayer) {
+    this.fields = new boolean[maxRows][maxCols];
+    this.shipsPerPlayer = shipsPerPlayer;
   }
 
   public void setField(int x, int y) {
+    if (x < 0) {
+      throw new Error("x too small");
+    }
+
+    if (y < 0) {
+      throw new Error("y too small");
+    }
+
+    if (x >= this.fields[0].length) {
+      System.out.println(x);
+      throw new Error("x too big");
+    }
+
+    if (y >= this.fields.length) {
+      throw new Error("y too big");
+    }
+
     this.fields[y][x] = true;
   }
 
@@ -47,10 +61,13 @@ public class Board {
     }
   }
 
-  public Ship[] generateShipsForPlayer(int minRow, int maxRow) {
-    Ship[] ships = new Ship[3];
-    for (int i = 0; i < ships.length; i++) {
-      ships[i] = generateShip(minRow, maxRow);
+  public ArrayList<Ship> generateShipsForPlayer(int minRow, int maxRow) {
+    ArrayList<Ship> ships = new ArrayList<Ship>();
+    for (int i = 0; i < this.shipsPerPlayer; i++) {
+      System.out.println(i);
+      System.out.println(ships.size());
+      System.out.println("---");
+      ships.add(generateShip(minRow, maxRow));
     }
     return ships;
   }
