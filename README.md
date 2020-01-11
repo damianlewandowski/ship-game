@@ -10,9 +10,4 @@ Applying OOP concepts like _encapsulation_ and _single responsibility principle_
 
 ## Todo
 
-- Turns for player and computer
-  - Attacking and destroying ships
-    - Player or computer chooses coordinates (x, y)
-    - Check if enemy's ship exists on given coordinates
-    - Sink the ship if it does
-- Computer needs to randomly attack enemy's ships
+- Tests
