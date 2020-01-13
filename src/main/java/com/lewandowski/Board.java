@@ -64,9 +64,6 @@ public class Board {
   public ArrayList<Ship> generateShipsForPlayer(int minRow, int maxRow) {
     ArrayList<Ship> ships = new ArrayList<Ship>();
     for (int i = 0; i < this.shipsPerPlayer; i++) {
-      System.out.println(i);
-      System.out.println(ships.size());
-      System.out.println("---");
       ships.add(generateShip(minRow, maxRow));
     }
     return ships;
